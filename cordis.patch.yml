@@ -1,0 +1,4 @@
+- insert:
+    - id: local-resource-picker
+      name: '@local/dsh-resource-picker'
+      config: {}

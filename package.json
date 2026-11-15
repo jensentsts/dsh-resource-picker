@@ -1,0 +1,91 @@
+{
+  "name": "@local/dsh-resource-picker",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "DSH internal workspace, session and file picker with passive previews.",
+  "license": "MIT",
+  "main": "./index.js",
+  "types": "./types.d.ts",
+  "exports": {
+    ".": {
+      "types": "./types.d.ts",
+      "default": "./index.js"
+    },
+    "./client": {
+      "types": "./types.d.ts",
+      "default": "./client.js"
+    },
+    "./types": "./types.d.ts",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "index.js",
+    "host.js",
+    "domain.js",
+    "queue.js",
+    "rpc.js",
+    "style.js",
+    "client-entry.js",
+    "client.js",
+    "build.mjs",
+    "types.d.ts",
+    "cordis.patch.yml",
+    "locale/*.json",
+    "icon.svg",
+    "README.md",
+    "VERIFICATION.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "node build.mjs",
+    "check": "node build.mjs --check && node --check index.js && node --check client.js && node --check host.js && node --check rpc.js",
+    "test": "node --test tests/*.test.mjs",
+    "test:runtime": "node --import ./tests/runtime-loader.mjs --test tests/runtime.integration.mjs",
+    "test:loader": "node --expose-internals --import ./tests/runtime-loader.mjs --test tests/loader.integration.mjs"
+  },
+  "engines": {
+    "node": ">=24.9",
+    "dsh": ">=0.2.2-rc.1 <0.3.0"
+  },
+  "peerDependencies": {
+    "@deepseek-ai/cordis": "~4.1.0",
+    "@deepseek-ai/dsh-typert-protocol": "0.2.2-rc.1",
+    "zod": "4.4.3"
+  },
+  "devDependencies": {
+    "react": "^18.3.1"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "inject": [
+        "@deepseek-ai/dsh-api-gateway",
+        "@deepseek-ai/dsh-client-locale",
+        "@deepseek-ai/dsh-client-resources",
+        "@deepseek-ai/dsh-client-ui-layout",
+        "@deepseek-ai/dsh-client-ui-workspace",
+        "@deepseek-ai/dsh-client-ui-session",
+        "@deepseek-ai/dsh-client-ui-sidebar-files"
+      ]
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jensentsts/dsh-resource-picker.git"
+  },
+  "homepage": "https://github.com/jensentsts/dsh-resource-picker#readme",
+  "bugs": {
+    "url": "https://github.com/jensentsts/dsh-resource-picker/issues"
+  },
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "ai-agent"
+  ]
+}
